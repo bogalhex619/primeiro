@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>História Interativa</title>
+<style>
+:root{--principal:#c62828;--escuro:#8e0000;--fundo:#fff5f5;--texto:#222}
+body{margin:0;font-family:Arial,sans-serif;background:var(--fundo);color:var(--texto);transition:.3s}
+.dark{background:#121212;color:white}
+header{background:var(--principal);color:white;padding:30px;text-align:center}
+nav{background:var(--escuro);text-align:center;padding:15px;position:sticky;top:0}
+nav a{color:white;text-decoration:none;margin:15px;font-weight:bold}
+.container{max-width:1000px;margin:auto;padding:20px}
+.card{background:white;padding:20px;margin:20px 0;border-left:6px solid var(--principal);border-radius:10px}
+.dark .card{background:#222}
+button{background:var(--principal);color:white;border:none;padding:10px 15px;margin:5px;border-radius:6px;cursor:pointer}
+.timeline{border-left:4px solid var(--principal);padding-left:20px}
+#topo{position:fixed;bottom:20px;right:20px;display:none}
+</style>
+</head>
+<body>
+<header><h1>🌍 A Minha Paixão pela História</h1><p>Descobre os acontecimentos que moldaram o mundo</p></header>
+<nav><a href="#sobre">Sobre</a><a href="#timeline">Linha Temporal</a><a href="#curiosidade">Curiosidades</a></nav>
+<div class="container" id="conteudo">
+<h2 id="sobre">Sobre Mim</h2><p>Sou apaixonado por História e gosto de estudar civilizações antigas, guerras, impérios e descobertas.</p>
+<button onclick="zoomIn()">🔍 Zoom In</button><button onclick="zoomOut()">🔎 Zoom Out</button><button onclick="modoEscuro()">🌙 Modo Escuro</button>
+<h2 id="timeline">Linha Temporal Interativa</h2>
+<div class="timeline"><div><h3>🏺 Egito Antigo</h3></div><div><h3>🏛️ Império Romano</h3></div><div><h3>⛵ Descobrimentos Portugueses</h3></div><div><h3>🌍 Segunda Guerra Mundial</h3></div></div>
+<h2 id="curiosidade">Curiosidades</h2><button onclick="mostrarCuriosidade()">🎲 Curiosidade Aleatória</button><p id="texto"></p></div>
+<button id="topo" onclick="window.scrollTo(0,0)">⬆ Topo</button>
+<script>
+let escala=1;function zoomIn(){escala+=0.1;conteudo.style.transform=`scale(${escala})`;conteudo.style.transformOrigin='top center'}
+function zoomOut(){escala=Math.max(0.6,escala-0.1);conteudo.style.transform=`scale(${escala})`;conteudo.style.transformOrigin='top center'}
+function modoEscuro(){document.body.classList.toggle('dark')}
+function mostrarCuriosidade(){const c=['O Império Romano durou mais de mil anos.','Portugal é um dos países mais antigos da Europa.','A Biblioteca de Alexandria foi uma das maiores do mundo antigo.'];texto.innerText=c[Math.floor(Math.random()*c.length)]}
+window.onscroll=function(){topo.style.display=document.documentElement.scrollTop>300?'block':'none'}
+</script>
+</body></html>
